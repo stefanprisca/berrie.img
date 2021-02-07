@@ -1,0 +1,1 @@
+docker run -v ./packer:/berrie.packer/ --name pkberrie ubuntu:latest /bin/bash

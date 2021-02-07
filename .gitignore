@@ -1,0 +1,4 @@
+.vscode/*
+packer-builder-arm
+*.img
+*_cache
