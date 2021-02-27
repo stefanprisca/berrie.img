@@ -1,8 +1,10 @@
 ---
 - name: This is a hello-world example
-  hosts: default
+  hosts: 127.0.0.1
+  connection: local
+  
   tasks:
-    - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
-      copy:
-        content: hello world
-        dest: /tmp/asnibletest.txt
+  - name: Create a file called '/tmp/testfile.txt' with the content 'hello world'.
+    copy:
+      content: 'hello world'
+      dest: /tmp/asnibletest.txt
