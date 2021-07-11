@@ -24,9 +24,9 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # https://www.packer.io/docs/from-1.5/blocks/source
 source "arm" "raspios_lite" {
   file_checksum_type    = "sha256"
-  file_checksum_url     = "https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/2020-08-20-raspios-buster-arm64-lite.zip.sha256"
+  file_checksum_url     = "https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-full.zip.sha256"
   file_target_extension = "zip"
-  file_urls             = ["https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/2020-08-20-raspios-buster-arm64-lite.zip"]
+  file_urls             = ["https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-full.zip"]
   image_build_method    = "reuse"
   image_chroot_env      = ["PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"]
   image_partitions {
@@ -59,14 +59,6 @@ build {
   sources = ["source.arm.raspios_lite"]
 
   provisioner "shell" {
-    inline = ["apt install ansible -y"]
-  }
-  
-  // provisioner "shell" {
-  //   inline = ["ansible-playbook ./packer/playbook.yml -f 10 --verbose"]
-  // }
-
-  provisioner "ansible-local" {
-    playbook_file = "./packer/playbook.yml"
+    inline = ["touch /touched"]
   }
 }
