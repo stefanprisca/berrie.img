@@ -59,20 +59,14 @@ build {
   sources = ["source.arm.raspios_lite"]
 
   provisioner "shell" {
-    inline = ["touch /tmp/test"]
+    inline = ["apt install ansible -y"]
   }
   
-  provisioner "shell" {
-    inline = ["ansible-playbook ./packer/playbook.yml -f 10 --verbose"]
-  }
-
-  // provisioner "ansible" {
-  //   playbook_file = "./packer/playbook.yml"
-  //   # user = "Administrator"
-  //   use_proxy = false
-  //   extra_arguments = [
-  //       "--extra-vars",
-  //       "-vvvvv"
-  //     ]
+  // provisioner "shell" {
+  //   inline = ["ansible-playbook ./packer/playbook.yml -f 10 --verbose"]
   // }
+
+  provisioner "ansible-local" {
+    playbook_file = "./packer/playbook.yml"
+  }
 }

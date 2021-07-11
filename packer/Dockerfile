@@ -8,3 +8,4 @@ RUN wget https://releases.hashicorp.com/packer/1.6.6/packer_1.6.6_linux_amd64.zi
   rm /tmp/packer.zip
 
 RUN yes | apt-get install ansible
+COPY packer/playbook.yml /packer/playbooks/playbook.yml
